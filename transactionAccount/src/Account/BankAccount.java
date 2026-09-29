@@ -1,23 +1,18 @@
 package Account;
-
-import java.math.BigDecimal;
-
 public class BankAccount {
     private String pin;
-    private BigDecimal balance;
+    private double balance;
     public BankAccount() {
-        this.balance = BigDecimal.ZERO;
+        this.balance = 0.0;
     }
-
-    public BigDecimal deposit(BigDecimal amount) {
-        if(amount.compareTo(BigDecimal.ZERO) <= 0) {
-            throw new IllegalArgumentException( "Invalid amount" );
+    public double deposit(double amount) {
+        if (amount <= 0) {
+            throw new IllegalArgumentException("Invalid amount");
         }
-        balance = balance.add(amount);;
-    return balance;
+        balance += amount;
+        return balance;
     }
-
-    public BigDecimal getBalance() {
+    public double getBalance() {
         return balance;
     }
     public String getPin() {
@@ -37,21 +32,23 @@ public class BankAccount {
         }
         this.pin = pin;
     }
-
-    public   BigDecimal checkBalance(String password) {
+    public double checkBalance(String password) {
         if (!pin.equals(password)) {
-            throw new IllegalArgumentException( "Incorrect PIN" );
+            throw new IllegalArgumentException("Incorrect PIN");
         }
-        return balance; }
-
-    public  BigDecimal withdraw(BigDecimal amount, String password) {
+        return balance;
+    }
+    public double withdraw(double amount, String password) {
         if (!pin.equals(password)) {
-            throw new IllegalArgumentException( "Incorrect PIN" );
+            throw new IllegalArgumentException("Incorrect PIN");
         }
-        if (amount.compareTo(balance) > 0) {
-            throw new IllegalArgumentException( "Insufficient Funds" );
+        if (amount <= 0) {
+            throw new IllegalArgumentException("Invalid amount");
         }
-        balance = balance.subtract(amount);
-return balance;
+        if (amount > balance) {
+            throw new IllegalArgumentException("Insufficient Funds");
+        }
+        balance -= amount;
+        return balance;
     }
 }
