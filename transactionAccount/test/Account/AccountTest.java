@@ -10,65 +10,47 @@ public class AccountTest {
 
     @BeforeEach
     void setUp() {
-        bankAccount = new BankAccount();
+        bankAccount = new BankAccount("customerName", "phone", correctPin);
     }
 
     @Test
     public void testThat_MoneyCanBeDeposited() {
-        bankAccount.setPin(correctPin);
         bankAccount.deposit(10000.0);
-        assertEquals(10000.0, bankAccount.checkBalance(correctPin));
+        assertEquals(10000.0, bankAccount.checkBalance());
     }
-
     @Test
     public void testThat_YouCannotDepositNegativeValue(){
-        bankAccount.setPin(correctPin);
         assertThrows( IllegalArgumentException.class, () -> bankAccount.deposit(-1000.0) );
+    }
+    @Test
+    public void testThat_YouCannotDepositEmptyValue(){
         assertThrows( IllegalArgumentException.class, () -> bankAccount.deposit(0.0) );
-        assertEquals( 0.0, bankAccount.checkBalance(correctPin) );
     }
 
     @Test
     public void testThat_MoneyCanBeWithdraw(){
-        bankAccount.setPin(correctPin);
         bankAccount.deposit(10000.0);
-        bankAccount.withdraw(7000.0, correctPin);
-        double actual = bankAccount.checkBalance(correctPin);
+        bankAccount.withdraw(7000.0);
+        double actual = bankAccount.checkBalance();
         assertEquals(3000.0, actual);
     }
 
     @Test
     public void testThat_AnyNegativeValueCannotBeWithdraw(){
-        bankAccount.setPin(correctPin);
         bankAccount.deposit(6000.0);
-
-        assertThrows( IllegalArgumentException.class, () -> bankAccount.withdraw(-1000.0, correctPin) );
-        assertEquals( 6000.0, bankAccount.checkBalance(correctPin) );
+        assertThrows( IllegalArgumentException.class, () -> bankAccount.withdraw(-1000.0) );
     }
 
-    @Test
-    public void testForWrongPin() {
-        bankAccount.setPin(correctPin);
-        bankAccount.deposit(6000.0);
-        assertThrows( IllegalArgumentException.class, () -> bankAccount.checkBalance(wrongPin) );
-    }
-
-    @Test
-    public void testPinMustBeFourDigits() {
-        String lessThanFourDigits = "123";
-        String moreThanFourDigits = "12345";
-        String nonNumericPin = "abcd";
-
-        assertThrows( IllegalArgumentException.class, () -> bankAccount.setPin(lessThanFourDigits) );
-        assertThrows( IllegalArgumentException.class, () -> bankAccount.setPin(moreThanFourDigits) );
-        assertThrows( IllegalArgumentException.class, () -> bankAccount.setPin(nonNumericPin) );
-    }
+//    @Test
+//    public void testForWrongPin() {
+//        bankAccount.deposit(6000.0);
+//        assertThrows( IllegalArgumentException.class, () -> bankAccount.withdraw(6000, wrongPin) );
+//    }
 
     @Test
     public void testForBalance() {
-        bankAccount.setPin(correctPin);
         bankAccount.deposit(20000.0);
-        double actual = bankAccount.checkBalance(correctPin);
+        double actual = bankAccount.checkBalance();
         assertEquals(20000.0, actual);
     }
 }

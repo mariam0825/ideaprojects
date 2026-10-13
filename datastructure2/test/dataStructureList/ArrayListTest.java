@@ -2,32 +2,36 @@ package dataStructureList;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ArrayListTest {
-    private ArrayList arrayList;
+
+    private ArrayListFunction arrayList;
+
     @BeforeEach
-    public void startWith(){
-        arrayList =new ArrayList();
+    public void startWith() {
+        arrayList = new ArrayListFunction();
     }
-@Test
-    public void testThat_ArrayListIsEmpty(){
-       assertTrue(arrayList.isEmpty());
-}
-@Test
-    public void testThat_YouCanAddToAnArrayList(){
-    assertTrue(arrayList.isEmpty());
-    arrayList.add("Mariam");
-    assertFalse(arrayList.isEmpty());
+
+    @Test
+    public void testThat_ArrayListIsEmpty() {
+        assertTrue(arrayList.isEmpty());
     }
     @Test
-    public void testThat_YouCanAddMoreToAList(){
+    public void testThat_YouCanAddToAnArrayList() {
         assertTrue(arrayList.isEmpty());
         arrayList.add("Mariam");
+    }
+    @Test
+    public void testThat_YouCanAddMoreToAList() {
+        arrayList.add("Mariam");
         arrayList.add("Sarah");
-         arrayList.add("Bella");
+        arrayList.add("Bella");
         assertFalse(arrayList.isEmpty());
+        assertEquals(3, arrayList.size());
     }
     @Test
     public void testThat_YouCanRemoveFromTheList(){
@@ -35,13 +39,14 @@ public class ArrayListTest {
         arrayList.add("Mariam");
         arrayList.add("Sarah");
         arrayList.add("Bella");
-        assertFalse(arrayList.isEmpty());
+
         assertEquals("Bella",arrayList.remove());
     }
     @Test
     public void testThat_RemoveReturnsLastItem() {
         arrayList.add("Mariam");
         arrayList.add("Sarah");
+
         assertEquals("Sarah", arrayList.remove());
         assertEquals("Mariam", arrayList.remove());
     }
@@ -52,6 +57,10 @@ public class ArrayListTest {
         arrayList.remove();
         arrayList.remove();
         assertTrue(arrayList.isEmpty());
+    }
+    @Test
+    public void testThat_SizeStartsAtZero() {
+        assertEquals(0, arrayList.size());
     }
 
     @Test

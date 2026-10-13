@@ -9,19 +9,18 @@ public class ArrayListFunction {
         return count == 0;
     }
     public void add(String name) {
-        names.add(name);
-        count++;
+        names.add(name); count++;
     }
     public int size() {
         return count;
     }
-    public String remove(String names) {
+    public String remove() {
         if (isEmpty()) {
             return null;
         }
         count--;
-        String removed = names[count];
-        names[count] = null;
+        String removed = names.get(count);
+        names.remove(count);
         return removed;
     }
 }
