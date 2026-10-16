@@ -22,7 +22,6 @@ public class TicketRepositoryImpl implements TicketRepository {
         return numberOfTickets;
     }
 
-
     @Override
     public void del(int id) {
         for (Ticket ticket : tickets) {
@@ -31,9 +30,7 @@ public class TicketRepositoryImpl implements TicketRepository {
                 return;
             }
         }
-
         throw new IllegalArgumentException("Ticket ID not found");
-
     }
 
     @Override

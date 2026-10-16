@@ -32,7 +32,7 @@ public class VehicleRepositoryImpl implements VehicleRepository{
     }
     public void del(vehicleType type) {
         for(Vehicle vehicle: vehicles) {
-            if(Vehicle.getType() == type){
+            if(vehicle.getType() == type){
                 vehicles.remove(vehicle);
                 numberOfVehicle--;
                 break;
