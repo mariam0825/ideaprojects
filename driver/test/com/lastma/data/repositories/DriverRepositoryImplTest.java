@@ -16,7 +16,6 @@ class DriverRepositoryImplTest {
         driver = new Driver();
     }
 
-
     @Test
     public void testThat_whenISaveOneDriverCountIsOne(){
         driverRepository.save(driver);
@@ -38,12 +37,28 @@ class DriverRepositoryImplTest {
         driverRepository.save(driver);
         assertEquals(1,driver.getId());
     }
-//    @Test
-//    public void testThat_whenIFindByIdDriverIsFound(){
-//        driver. setId(1);
-//        driverRepository.save(driver);
-//        assertEquals(driver,driverRepository.findByid());
-//    }
+    @Test
+    public void testThat_whenIFindByIdDriverIsFound(){
+        driver. setId(1);
+        driverRepository.save(driver);
+        assertEquals(driver,driverRepository.findByid(1));
+
+    }
+    @Test
+    public void testThat_DriverExistById(){
+        driver.setId(1);
+        driverRepository.save(driver);
+        assertEquals(driver, driverRepository.existById (1));
+    }
+
+    @Test
+    public void testThat_YouCanDeleteDriverId(){
+        driver.setId(1);
+        driverRepository.save(driver);
+        driverRepository.del(1);
+        assertEquals(0,driverRepository.count());
+    }
+
 
 
 }

@@ -2,7 +2,7 @@ package com.lastma.data.models;
 
 import java.time.Year;
 
-public class vehicle {
+public class Vehicle {
     private String brand;
     private String model;
     private Year year;

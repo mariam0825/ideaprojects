@@ -21,8 +21,37 @@ public class DriverRepositoryImpl implements DriverRepository {
         return numberOfDrivers;
     }
 
-//    @Override
-//    public Driver findByid() {
-//        return null;
-//    }
+    @Override
+    public Driver findByid(int id) {
+        for (Driver driver : drivers) {
+            if (driver.getId() == id){
+                return driver;
+            }
+        }
+        throw new IllegalArgumentException("id not found");
+    }
+
+    @Override
+    public void del(int id) {
+        for(Driver driver: drivers) {
+            if(driver.getId() == id){
+                drivers.remove(driver);
+                numberOfDrivers--;
+                break;
+            }
+        }
+    }
+
+
+    public Driver existById(int id) {
+        for (Driver driver : drivers) {
+            if (driver.getId() == id){
+                return driver;
+            }
+        }
+        throw new IllegalArgumentException("id not found");
+    }
 }
+
+
+
